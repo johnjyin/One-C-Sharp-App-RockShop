@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="Rockshop.exe" version="0.3.0.0" publicKeyToken="0000000000000000" language="en-AU" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="Rockshop.exe" version="0.3.0.0" publicKeyToken="459bbc83ecc7a09f" language="en-AU" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="Rockshop" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rockshop.exe" size="77312">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rockshop.exe" size="78336">
       <assemblyIdentity name="Rockshop" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>fD9ve+vVSWVjrXwKWL5nsbDMi/k=</dsig:DigestValue>
+        <dsig:DigestValue>o95My2bqwTcKiu+F24DvUGEyNWE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -86,4 +86,4 @@
       <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}"></supportedOS>-->
     </application>
   </compatibility>
-</asmv1:assembly>
+<publisherIdentity name="CN=SOUTH_WESTERN\PAC107B-03" issuerKeyHash="96cd21cea97856633625139d2d876768bbaa164c" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>D3N8BESCbpmGMjTkQksPSyjlj+0=</DigestValue></Reference></SignedInfo><SignatureValue>Ng03nhhNVM5018lXndRNs13wcMDmBEUWPRZrOPCZoUJk6yp/skgLVMyFmx218BbO2wq93D9esVvlnFkgxhWQXj5LTqNshmp2EwzGcY1d5LszqOdqF4w1g7H1dcDnLSOLIpSyF9E82rQoYVyawzFtptKyRiKbB3tlkPuboT4kkPc=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>o8opZoVi9N9I6wJDooNoHqvTRzb/2Noal4rBBqcZhfUe8Kc/SSidjlRRKvuWRPTU9VI41uquDahHxUfdGZak4BmpidHYRc96wF822XsHYi8wcenbUzIzGGe8qA682Px7/5eph3ULUYtqGwrE00Oa5HtGWYYn+wwl2CyIJlWtWHU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="ed8fe5284b0f4b42e4343286996e8244047c730f" Description="" Url=""><as:assemblyIdentity name="Rockshop.exe" version="0.3.0.0" publicKeyToken="459bbc83ecc7a09f" language="en-AU" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=SOUTH_WESTERN\PAC107B-03</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>G2OI+W4Xnn3HbtqLeaUzjetyaQs=</DigestValue></Reference></SignedInfo><SignatureValue>oHGlExpAdYFkOJgADO67FVGTNcjw5viUX+Q0XcTaQRv654XSdVACiZ5H9hZlPcPmnOy5d0GJi5jHANJ1cAWjLqqMxcPJYLna8cGSJjKqWSiZ2/UtDiXnjDDGQL3yq4IBcnBfLhk9FEF4p6EOole8f6FDdYaj1ALK0/5cMyv9Bq4=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>o8opZoVi9N9I6wJDooNoHqvTRzb/2Noal4rBBqcZhfUe8Kc/SSidjlRRKvuWRPTU9VI41uquDahHxUfdGZak4BmpidHYRc96wF822XsHYi8wcenbUzIzGGe8qA682Px7/5eph3ULUYtqGwrE00Oa5HtGWYYn+wwl2CyIJlWtWHU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB+TCCAWKgAwIBAgIQZ//Fui2fN5FLyzoUJLbaTzANBgkqhkiG9w0BAQUFADA7MTkwNwYDVQQDHjAAUwBPAFUAVABIAF8AVwBFAFMAVABFAFIATgBcAFAAQQBDADEAMAA3AEIALQAwADMwHhcNMTQwNjAyMDc1ODMyWhcNMTUwNjAyMTM1ODMyWjA7MTkwNwYDVQQDHjAAUwBPAFUAVABIAF8AVwBFAFMAVABFAFIATgBcAFAAQQBDADEAMAA3AEIALQAwADMwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAKPKKWaFYvTfSOsCQ6KDaB6r00c2/9jaGpeKwQanGYX1HvCnP0konY5UUSr7lkT01PVSONbqrg2oR8VH3RmWpOAZqYnR2EXPesBfNtl7B2IvMHHp21MyMxhnvKgOvNj8e/+XqYd1C1GLahsKxNNDmuR7RlmGJ/sMJdgsiCZVrVh1AgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAgfRdcdEco4TT0MfDU5c5GvLpVlnot8PuMFfwQuxZnMplczhazDmk8xjhGB6Y2YBRhKD9P2iywsLJWfqNE3nd4R34Aa4Cc4xgmEmjmNigXzi0m+CfpwPzGuiBajH98mu68c+2GDeUyLPf/+viFJCcqzPgpitY3zUSJDoFH31PUmQ=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

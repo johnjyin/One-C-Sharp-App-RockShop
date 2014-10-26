@@ -1,0 +1,16 @@
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\bin\Release\Rockshop.exe.config
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\obj\Release\Rockshop.csproj.ResolveComReference.cache
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\bin\Release\Rockshop.exe.manifest
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\bin\Release\Rockshop.application
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\bin\Release\Rockshop.exe
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\bin\Release\Rockshop.pdb
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\obj\Release\Rockshop.csprojResolveAssemblyReference.cache
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\obj\Release\Rockshop.frmSelectRoyaltyOwners.resources
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\obj\Release\Rockshop.frmMedia.resources
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\obj\Release\Rockshop.Properties.Resources.resources
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\obj\Release\Rockshop.csproj.GenerateResource.Cache
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\obj\Release\Rockshop.TrustInfo.xml
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\obj\Release\Rockshop.exe.manifest
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\obj\Release\Rockshop.application
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\obj\Release\Rockshop.exe
+E:\2014 TAFE\John_CS\Rockshop-John-Yin-v0.4\Rockshop\obj\Release\Rockshop.pdb

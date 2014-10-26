@@ -11,7 +11,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using Excel = Microsoft.Office.Interop.Excel; 
+using Excel = Microsoft.Office.Interop.Excel;
+
+/// <summary>
+/// Required designer variable.
+/// author: john yin
+/// version: v0.3
+/// create date: 5/5/2014
+/// last update data: 23/5/2014
+/// </summary>
+/// 
 
 namespace Rockshop
 {
@@ -30,10 +39,10 @@ namespace Rockshop
         DateTime quickMediaBaseDate = DateTime.Parse("15/11/2013");
 
 
-
         public frmMedia()
         {
             InitializeComponent();
+
 
             this.ActiveControl = txtProductName;
 
@@ -150,6 +159,7 @@ namespace Rockshop
             {
                 if (iActiveProductNo > 0)
                 {
+                    // lambda expression
                     objmedia = lstmedia.FirstOrDefault(x => x.productNo == iActiveProductNo);
 
                     foreach (Media obj in lstmedia)
@@ -359,14 +369,16 @@ namespace Rockshop
             }
         }
 
-        private void deleteMedia(int iProductNo)
+        private bool deleteMedia(int iProductNo)
         {
+            bool bResult = true;
             try
             {
                 Media mediaToDelete = lstmedia.SingleOrDefault(x => x.productNo == iProductNo);
                 if (mediaToDelete != null)
                 {
-                    DialogResult dr = MessageBox.Show("Confirm Delete Media: Name = " + mediaToDelete.productName + " !",
+                    DialogResult dr = MessageBox.Show("Confirm Delete Media: ProductNo = " + mediaToDelete.productNo.ToString()
+                                                    + "; Name = " + mediaToDelete.productName + " !",
                                                         "Delete Media", MessageBoxButtons.YesNo, 
                                                         MessageBoxIcon.Information);
                     if (dr == DialogResult.Yes)
@@ -387,12 +399,17 @@ namespace Rockshop
                                 throw new Exception("Database corrupted, Inform DBA, press any key to abort!");
                         }
                     }
+                    else
+                    {
+                        bResult = false;
+                    }
                 }
-
+                return bResult;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Media Delete", MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message, "Media Delete failed", MessageBoxButtons.OK);
+                return false;
             }
         }
 
@@ -503,10 +520,69 @@ namespace Rockshop
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Media Delete", MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message, "Media Search", MessageBoxButtons.OK);
             }
         }
 
+        private void advSearchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            advSearchMedia();
+        }
+
+        public void advSearchMedia()
+        {
+            try
+            {
+                objmedia.validateProductName(txtProductName.Text, false);
+                objmedia.validateProductType(txtProductType.Text, false);
+                objmedia.validateFileType(txtFileType.Text, false);
+                objmedia.validateUrlSampler(txtUrlSampler.Text, false);
+                objmedia.validateUrlMedia(txtUrlMedia.Text, false);
+                objmedia.validateUnitPrice(txtUnitPrice.Text, false);
+                objmedia.validateRoyaltyNo(txtRoyaltyNo.Text, false);
+                objmedia.validateUnitRoyalty(txtUnitRoyalty.Text, false);
+                objmedia.validateDateAdded(txtDateAdded.Text, false);
+
+                bool ok = dacmedia.Search(objmedia, ref lstmedia);
+                
+                if (ok)
+                {
+                    switch (lstmedia.Count)
+                    {
+                        case 0:
+                            MessageBox.Show("No records found, \r check the search criteria before repeating the query",
+                                "Media Search", MessageBoxButtons.OK);
+                            break;
+                        case 1:
+                            displayMediaList(-1);
+                            break;
+                        default:
+                            displayMediaList(-1);
+                            break;
+                    }
+                }
+                else
+                {
+                    grdMedia.Rows.Clear();
+                    objmedia = new Media();
+                    // clear datagrid view
+                    txtProductNo.Text = "";
+                    txtProductName.Text = "";
+                    txtProductType.Text = "";
+                    txtFileType.Text = "";
+                    txtUrlSampler.Text = "";
+                    txtUrlMedia.Text = "";
+                    txtUnitPrice.Text = "";
+                    txtRoyaltyNo.Text = "";
+                    txtUnitRoyalty.Text = "";
+                    txtDateAdded.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Advanced Media Search", MessageBoxButtons.OK);
+            }
+        }
 
         /* -----------------------------------------------------------------
 
@@ -697,7 +773,7 @@ namespace Rockshop
 
         /* -----------------------------------------------------------------
 
-            Read Test Data From Execel
+            Read Test Data From Excel
             And Run Test Data
             Switch (dataType)
                 case 1: Call Insert Medias Function
@@ -772,7 +848,7 @@ namespace Rockshop
                         switch (dataType)
                         {
                             case 1:
-                                excelAddMedias(ref xlApp, msFilename);
+                                excelTestMedias(ref xlApp, msFilename);
                                 break;
                             case 2:
                                 excelAddMediasAndOwners(ref xlApp, msFilename);
@@ -792,8 +868,9 @@ namespace Rockshop
 
         /* -----------------------------------------------------------------
 
-            Insert Medias From Test Excel File
+            Automatic Test Medias From Test Excel File
 
+         *  This has been substituted by excelTestMedias() since v0.3
         --------------------------------------------------------------------*/
 
         private void excelAddMedias(ref Excel.Application xlApp, string sexcelFileName)
@@ -818,23 +895,28 @@ namespace Rockshop
                 // excel is not zero based!!
                 for (int i = 2; i <= rowCount; i++)
                 {
-                    int j = 3;
-
-                    txtProductName.Text = xlWorksheet.Cells[i, j + 1].Value.ToString();
-                    txtProductType.Text = xlWorksheet.Cells[i, j + 2].Value.ToString();
-                    txtFileType.Text = xlWorksheet.Cells[i, j + 3].Value.ToString();
-                    txtUrlSampler.Text = xlWorksheet.Cells[i, j + 4].Value.ToString();
-                    txtUrlMedia.Text = xlWorksheet.Cells[i, j + 5].Value.ToString();
-                    txtUnitPrice.Text = xlWorksheet.Cells[i, j + 6].Value.ToString();
-                    txtRoyaltyNo.Text = xlWorksheet.Cells[i, j + 7].Value.ToString();
-                    txtUnitRoyalty.Text = xlWorksheet.Cells[i, j + 8].Value.ToString();
-                    //var dblDate = Double.xlWorksheet(xlRange.Cells[i, j + 9].Value.ToString();
-                    txtDateAdded.Text = xlWorksheet.Cells[i, j + 9].Value.ToString("yyyy-MM-dd");
-
                     xlRange = (Excel.Range)xlWorksheet.Cells[i, 1];
-                    // insert()
+                     
                     try
                     {
+                        int j = 3;
+
+                        // it's safe to be in try...except 
+                        // when in case sheet cell value is null
+                        txtProductName.Text = xlWorksheet.Cells[i, j + 1].Value.ToString();
+                        txtProductType.Text = xlWorksheet.Cells[i, j + 2].Value.ToString();
+                        txtFileType.Text = xlWorksheet.Cells[i, j + 3].Value.ToString();
+                        txtUrlSampler.Text = xlWorksheet.Cells[i, j + 4].Value.ToString();
+                        txtUrlMedia.Text = xlWorksheet.Cells[i, j + 5].Value.ToString();
+                        txtUnitPrice.Text = xlWorksheet.Cells[i, j + 6].Value.ToString();
+                        txtRoyaltyNo.Text = xlWorksheet.Cells[i, j + 7].Value.ToString();
+                        txtUnitRoyalty.Text = xlWorksheet.Cells[i, j + 8].Value.ToString();
+                        //var dblDate = Double.xlWorksheet(xlRange.Cells[i, j + 9].Value.ToString();
+                        txtDateAdded.Text = xlWorksheet.Cells[i, j + 9].Value.ToString("yyyy-MM-dd");
+
+                        
+                        // insert()
+
                         objmedia.validateProductName(txtProductName.Text, true);
                         objmedia.validateProductType(txtProductType.Text, true);
                         objmedia.validateFileType(txtFileType.Text, true);
@@ -936,6 +1018,275 @@ namespace Rockshop
 
         /* -----------------------------------------------------------------
 
+            Test Medias From Test Excel Data
+
+        *   This substitudes excelTestMedias() since v0.3
+        --------------------------------------------------------------------*/
+
+        private void excelTestMedias(ref Excel.Application xlApp, string sexcelFileName)
+        {
+            Excel.Workbook xlWorkbook;
+            Excel._Worksheet xlWorksheet;
+            Excel.Range xlResult;
+            string sAction;
+
+            int iTestProductNo = 0;
+
+            // Create COM Objects. Create a COM object for everything that is referenced
+            xlWorkbook = xlApp.Workbooks.Open(sexcelFileName);
+            xlWorksheet = xlWorkbook.Sheets[1];
+            xlResult = xlWorksheet.UsedRange;
+
+            try
+            {
+                int rowCount = xlResult.Rows.Count;
+                int colCount = xlResult.Columns.Count;
+
+                // iterate over the rows and columns and print to the console as it appears in the file
+                
+                /* -----------------------------
+                 * 
+                 * !! excel is not zero based!!
+                 * 
+                 * ----------------------------- */
+                 
+                for (int i = 2; i <= rowCount; i++)
+                {
+                    sAction = xlWorksheet.Cells[i, 1].Value != null ?
+                        xlWorksheet.Cells[i, 1].Value.ToString() : "";
+                    
+                    xlResult = (Excel.Range)xlWorksheet.Cells[i, 2];
+
+                    int j = 4;
+
+                    if (sAction == "Insert") 
+                    {
+                        /*
+                         *  To test insertMedia()
+                         */
+
+                        try
+                        {
+                            /*  it's necessary to check the cell value is null or not 
+                                before convert to text 
+                                And whether the value is valid or not
+                                would be decided by Valide function
+                             */
+                            txtProductName.Text = xlWorksheet.Cells[i, j + 1].Value != null ?
+                                xlWorksheet.Cells[i, j + 1].Value.ToString() : "";
+                            txtProductType.Text = xlWorksheet.Cells[i, j + 2].Value != null ?
+                                xlWorksheet.Cells[i, j + 2].Value.ToString() : "";
+                            txtFileType.Text = xlWorksheet.Cells[i, j + 3].Value != null ?
+                                xlWorksheet.Cells[i, j + 3].Value.ToString() : "";
+                            txtUrlSampler.Text = xlWorksheet.Cells[i, j + 4].Value != null ?
+                                xlWorksheet.Cells[i, j + 4].Value.ToString() : "";
+                            txtUrlMedia.Text = xlWorksheet.Cells[i, j + 5].Value != null ?
+                                xlWorksheet.Cells[i, j + 5].Value.ToString() : "";
+                            txtUnitPrice.Text = xlWorksheet.Cells[i, j + 6].Value != null ?
+                                xlWorksheet.Cells[i, j + 6].Value.ToString() : "";
+                            txtRoyaltyNo.Text = xlWorksheet.Cells[i, j + 7].Value != null ?
+                                xlWorksheet.Cells[i, j + 7].Value.ToString() : "";
+                            txtUnitRoyalty.Text = xlWorksheet.Cells[i, j + 8].Value != null ?
+                                xlWorksheet.Cells[i, j + 8].Value.ToString() : "";
+                            txtDateAdded.Text = xlWorksheet.Cells[i, j + 9].Value != null ?
+                                xlWorksheet.Cells[i, j + 9].Value.ToString("yyyy-MM-dd") : "";
+
+                            objmedia.validateProductName(txtProductName.Text, true);
+                            objmedia.validateProductType(txtProductType.Text, true);
+                            objmedia.validateFileType(txtFileType.Text, true);
+                            objmedia.validateUrlSampler(txtUrlSampler.Text, true);
+                            objmedia.validateUrlMedia(txtUrlMedia.Text, true);
+                            objmedia.validateUnitPrice(txtUnitPrice.Text, true);
+                            objmedia.validateRoyaltyNo(txtRoyaltyNo.Text, true);
+                            objmedia.validateUnitRoyalty(txtUnitRoyalty.Text, true);
+                            objmedia.validateDateAdded(txtDateAdded.Text, true);
+
+                            int count = dacmedia.Insert(objmedia);
+
+                            switch (count)
+                            {
+                                case -1:
+                                    xlResult.Value = "Search aborted, no search criteria supplied";
+                                    break;
+                                case 0:
+                                    xlResult.Value = "Product failed to add, Product may already be on file";
+                                    break;
+                                case 1:
+                                    iTestProductNo = dacmedia.LastUsedProductNo();
+                                    txtProductNo.Text = iTestProductNo.ToString();
+
+                                    xlWorksheet.Cells[i, 4].Value = iTestProductNo.ToString();
+                                    xlResult.Value = "Insert Media OK";
+
+                                    lstmedia = dacmedia.GetMedias();
+                                    displayMediaList(iTestProductNo);
+                                    break;
+                                default:
+                                    xlResult.Value = "Insert Media Error: Database corrupted, Inform DBA, presss any key to abort";
+                                    break;
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            xlResult.Value = "Insert Media Error: " + ex.Message;
+                        }
+                    }
+                    else if (sAction == "Search")
+                    {
+                        /*  
+                         *  To test searchMedia()
+                         */
+
+                        /* 
+                         *  reset and fetch all Medias before search
+                         * 
+                         */
+                        //lstmedia = dacmedia.GetMedias();
+                        ///displayMediaList(-1);
+
+                        //  start search
+                        try
+                        {
+                            /*  
+                             * it's necessary to check the cell value is null or not 
+                             * when the field value is null, means the filter is not required
+                             */
+                            
+                            txtProductName.Text = xlWorksheet.Cells[i, j + 1].Value != null ?
+                                xlWorksheet.Cells[i, j + 1].Value.ToString() : "";
+                            txtProductType.Text = xlWorksheet.Cells[i, j + 2].Value != null ?
+                                xlWorksheet.Cells[i, j + 2].Value.ToString() : "";
+                            txtFileType.Text = xlWorksheet.Cells[i, j + 3].Value != null ?
+                                xlWorksheet.Cells[i, j + 3].Value.ToString() : "";
+                            txtUrlSampler.Text = xlWorksheet.Cells[i, j + 4].Value != null ?
+                                xlWorksheet.Cells[i, j + 4].Value.ToString() : "";
+                            txtUrlMedia.Text = xlWorksheet.Cells[i, j + 5].Value != null ?
+                                xlWorksheet.Cells[i, j + 5].Value.ToString() : "";
+                            txtUnitPrice.Text = xlWorksheet.Cells[i, j + 6].Value != null ?
+                                xlWorksheet.Cells[i, j + 6].Value.ToString() : "";
+                            txtRoyaltyNo.Text = xlWorksheet.Cells[i, j + 7].Value != null ?
+                                xlWorksheet.Cells[i, j + 7].Value.ToString() : "";
+                            txtUnitRoyalty.Text = xlWorksheet.Cells[i, j + 8].Value != null ?
+                                xlWorksheet.Cells[i, j + 8].Value.ToString() : "";
+                            txtDateAdded.Text = xlWorksheet.Cells[i, j + 9].Value != null ?
+                                xlWorksheet.Cells[i, j + 9].Value.ToString("yyyy-MM-dd") : "";
+
+                            objmedia = new Media();
+                            objmedia.validateProductName(txtProductName.Text, false);
+                            objmedia.validateProductType(txtProductType.Text, false);
+                            objmedia.validateFileType(txtFileType.Text, false);
+                            objmedia.validateUrlSampler(txtUrlSampler.Text, false);
+                            objmedia.validateUrlMedia(txtUrlMedia.Text, false);
+                            objmedia.validateUnitPrice(txtUnitPrice.Text, false);
+                            objmedia.validateRoyaltyNo(txtRoyaltyNo.Text, false);
+                            objmedia.validateUnitRoyalty(txtUnitRoyalty.Text, false);
+                            objmedia.validateDateAdded(txtDateAdded.Text, false);
+
+                            bool ok = dacmedia.Search(objmedia, ref lstmedia);
+                            
+                            if (ok)
+                            {
+                                switch (lstmedia.Count)
+                                {
+                                    case 0:
+                                        MessageBox.Show("No records found, \r check the search criteria before repeating the query",
+                                            "Media Search", MessageBoxButtons.OK);
+                                        break;
+                                    case 1:
+                                        displayMediaList(-1);
+                                        break;
+                                    default:
+                                        displayMediaList(-1);
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                grdMedia.Rows.Clear();
+                                objmedia = new Media();
+                                // clear datagrid view
+                                txtProductNo.Text = "";
+                                txtProductName.Text = "";
+                                txtProductType.Text = "";
+                                txtFileType.Text = "";
+                                txtUrlSampler.Text = "";
+                                txtUrlMedia.Text = "";
+                                txtUnitPrice.Text = "";
+                                txtRoyaltyNo.Text = "";
+                                txtUnitRoyalty.Text = "";
+                                txtDateAdded.Text = "";
+                            }
+                            xlResult.Value = "Search " + lstmedia.Count.ToString() + " Medias";
+                        }
+                        catch (Exception ex)
+                        {
+                            //MessageBox.Show(ex.Message, "Media Search", MessageBoxButtons.OK);
+                            xlResult.Value = "Search Media Error: " + ex.Message;
+                        }
+                    }
+                    else if (sAction == "Delete")
+                    {
+
+                        /*
+                         *  To test deleteMedia()
+                         *  
+                         *  in here, we just remove the 1st Medias from the search result
+                         */
+
+                        try
+                        {
+                            foreach (Media obj in lstmedia)
+                            {
+                                if (deleteMedia(obj.productNo) )
+                                xlResult.Value += "Delete Media: " + obj.productNo.ToString() + "\n";
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            xlResult.Value = "Delete Media Error: " + ex.Message;
+                        }
+                        
+                    }
+                    else if (sAction == "Update")
+                    {
+                        /*
+                         *  To test updateMedia()
+                         *  
+                         *  in here, we just remove the 1st Medias from the search result
+                         */
+
+
+                    }
+
+                }
+            }
+            // coming from: https://coderwall.com/p/app3ya
+            finally
+            {
+                //cleanup
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                //rule of thumb for releasing com objects:
+                //  never use two dots, all COM objects must be referenced and released individually
+                //  ex: [somthing].[something].[something] is bad
+
+                //release com objects to fully kill excel process from running in the background
+                Marshal.ReleaseComObject(xlResult);
+                Marshal.ReleaseComObject(xlWorksheet);
+
+                //close and release
+                xlWorkbook.Close(true);
+                Marshal.ReleaseComObject(xlWorkbook);
+            }
+
+        }
+
+
+        /* -----------------------------------------------------------------
+
             Insert Medias From Test Excel File
          * 
          *  Not Yet Finished ???
@@ -988,6 +1339,8 @@ namespace Rockshop
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }       
+        }
+
+   
     }
 }

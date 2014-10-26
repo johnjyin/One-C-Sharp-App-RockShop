@@ -8,9 +8,9 @@ using System.Data;
 /// <summary>
 /// Required designer variable.
 /// author: john yin
-/// version: version: V0.1
+/// version: V0.3
 /// create date: 5/5/2014
-/// last update data: 5/5/2014
+/// last update data: 23/5/2014
 /// </summary>
 /// 
 
@@ -129,21 +129,34 @@ namespace Rockshop
 
         public bool Search(Media media, ref List<Media> lst)
         {
+            /*
+             *      By default, in C#, value types (such as the int, decimal, and bool types)
+             *      can't store null values.
+             *      
+             *      int : 0
+             *      Datetime : default(DateTime)
+             *      
+             *      string : null
+             *      
+             *      However, C# allow us to define them as nullable types to store a null value
+             * 
+             *
+             */
             String ssql = "";
             ssql += "SELECT * ";
             ssql += "FROM media m ";
             ssql += "LEFT JOIN royaltyowners r ";
             ssql += "ON m.RoyaltyNo = r.RoyaltyNo ";
             ssql += "WHERE  ";
-            ssql += "m.ProductName like '%"       + media.productName + "%' AND ";
-            ssql += "m.ProductType like '%"       + media.productType.ToString() + "%' AND ";
-            ssql += "m.FileType like '%" + media.fileType + "%' AND ";
-            ssql += "m.URLSampler like '%" + media.urlSampler + "%' AND ";
-            ssql += "m.URLMedia like '%" + media.urlMedia + "%' AND ";
-            ssql += "m.UnitPrice like '%" + media.unitPrice.ToString() + "%' AND ";
-            ssql += "m.RoyaltyNo like '%" + media.royaltyNo.ToString() + "%' AND ";
-            ssql += "m.UnitRoyalty like '%" + media.unitRoyalty.ToString() + "%' AND ";
-            ssql += "m.DateAdded like '%" + media.dateAdded.ToString("yyyy-MM-dd") + "%' ";
+            ssql += "m.ProductName like '%"       + ( media.productName != null ? media.productName.ToString() : "" ) + "%' AND ";
+            ssql += "m.ProductType like '%"       + ( media.productType != 0 ? media.productType.ToString() : "" ) + "%' AND ";
+            ssql += "m.FileType like '%" + ( media.fileType != null ? media.fileType.ToString() : "" ) + "%' AND ";
+            ssql += "m.URLSampler like '%" + ( media.urlSampler != null ? media.urlSampler.ToString() : "" ) + "%' AND ";
+            ssql += "m.URLMedia like '%" + ( media.urlMedia != null ? media.urlMedia.ToString() : "" )  +"%' AND ";
+            ssql += "m.UnitPrice like '%" + ( media.unitPrice != 0 ? media.unitPrice.ToString() : "" ) + "%' AND ";
+            ssql += "m.RoyaltyNo like '%" + ( media.royaltyNo != 0 ? media.royaltyNo.ToString() : "" )  +"%' AND ";
+            ssql += "m.UnitRoyalty like '%" + ( media.unitRoyalty != 0 ? media.unitRoyalty.ToString() : "" ) + "%' AND ";
+            ssql += "m.DateAdded like '%" + (media.dateAdded != default(DateTime) ? media.dateAdded.ToString("yyyy-MM-dd") : "") + "%' ";
 
             dt = dacMySql.ExecuteQuery(ssql);
 

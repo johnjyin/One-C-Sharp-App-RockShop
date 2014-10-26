@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rockshop.exe" size="77312">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rockshop.exe" size="74752">
       <assemblyIdentity name="Rockshop" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>fD9ve+vVSWVjrXwKWL5nsbDMi/k=</dsig:DigestValue>
+        <dsig:DigestValue>3+ayStF9rQCtt5P6QpnKouaDyRg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

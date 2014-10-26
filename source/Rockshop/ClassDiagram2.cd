@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Rockshop.dacMedia" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAAAAAAAAAAFAAAAAAEQAAAIgAAA=</HashCode>
+      <FileName>dacMedia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rockshop.dacMySQLConn" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAABAAAAAAAgAAAAEAAAAAAAAAAABAAAAABCAA=</HashCode>
+      <FileName>dacMySQLConn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rockshop.dacRoyaltyOwner" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAEQAAAAAAAA=</HashCode>
+      <FileName>dacRoyaltyOwner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rockshop.frmMedia" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>fQTAAyAEACIAjJAKACCE4RACIBpgAKFAKTgDs6RAAgg=</HashCode>
+      <FileName>frmMedia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rockshop.frmSelectRoyaltyOwners" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAIAAACAAAAEgEEiAAgQCAAAARAAEAAAAAQAmAAA=</HashCode>
+      <FileName>frmSelectRoyaltyOwners.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rockshop.Media" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wBYAAECAgAMAIQAAAEAAQQkIAEAAAECkAAwAIKMAAAA=</HashCode>
+      <FileName>Media.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rockshop.Program" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAFAAAACAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rockshop.Rocker" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAQAAwIAKAAAIAAIIgAAAkAAAgogBAAAA=</HashCode>
+      <FileName>Rocker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rockshop.RoyaltyOwner" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAYAAgAIACAQAQQBEAQAIAAEEAAAEAAAAAAAACAAAQA=</HashCode>
+      <FileName>RoyaltyOwner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rockshop.Properties.Resources" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rockshop.Properties.Settings" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
